@@ -29,10 +29,10 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['success' => false,'error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken(['success' => true,'token'=>$token],200);
     }
 
     /**
@@ -42,7 +42,9 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        // return Auth::user();
+        return response()->json(['success' => true, 'user' =>auth()->user()], 200);
+        // return response()->json(auth()->user());
     }
 
     /**
@@ -54,7 +56,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['success' => true,'message' => 'Successfully logged out'],200);
     }
 
     /**
@@ -103,5 +105,9 @@ class AuthController extends Controller
             'message' => '¡Usuario registrado exitosamente!',
             'user' => $user
         ], 201);
+    }
+
+    public function checkToken(){
+        return response()->json(['success' => true],200); 
     }
 }
