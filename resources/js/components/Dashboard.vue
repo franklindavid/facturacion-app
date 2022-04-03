@@ -4,7 +4,6 @@
             <div class="col text-center">
                 <h1>Componente <span class="badge bg-secondary">DASHBOARD</span></h1>
                 <h3 v-if="user"> Hi , {{user.name}}</h3>
-                <button type="submit" class="btn btn-primary" @click.prevent="logout">Submit</button>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ class factura extends Model
 
     public function productos()
     {
-        return $this->belongsToMany(Producto::class)->withPivot('id')->withTimestamps();
+        return $this->hasMany(Producto::class);
     }
 }
 

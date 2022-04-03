@@ -31,4 +31,6 @@ Route::group([
     Route::post('me', 'App\Http\Controllers\AuthController@me');
     Route::post('register', 'App\Http\Controllers\AuthController@register');
     Route::post('checkToken', 'App\Http\Controllers\AuthController@checkToken');
+
 });
+Route::resource('factura',App\Http\Controllers\FacturasController::class);

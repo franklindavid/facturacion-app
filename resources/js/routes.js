@@ -29,7 +29,7 @@ const routes = [
         component: Factura
     },
     {
-        name: 'Create',
+        name: 'create',
         path: '/create',
         component: CreateFactura
     },

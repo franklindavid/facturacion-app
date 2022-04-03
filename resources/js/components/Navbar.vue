@@ -23,14 +23,16 @@
           <router-link exact-active-class="active" to="/factura" class="nav-link active" aria-current="page">Factura</router-link>
         </li>
       </ul>
-       <span class="navbar-text">
+       <!-- <span class="navbar-text">
             <h3 v-if="user !== null">{{user.name}}</h3>
+      </span> -->
+       <span class="navbar-text">
+            <!-- <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page" v-if="!user">Login</router-link> -->
+            <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page">Login</router-link>
       </span>
        <span class="navbar-text">
-            <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page" v-if="!user">Login</router-link>
-      </span>
-       <span class="navbar-text">
-            <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page" v-if="user !== null"   @click.prevent="logout">Logout</router-link>
+            <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page"   @click.prevent="logout">Logout</router-link>
+            <!-- <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page" v-if="user !== null"   @click.prevent="logout">Logout</router-link> -->
       </span>
     </div>
   </div>
