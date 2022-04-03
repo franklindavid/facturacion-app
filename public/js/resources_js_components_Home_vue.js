@@ -11,28 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Home' // props:['user'],
-  // data() {
-  //     return {
-  //         user: null
-  //     }
-  // },
-  // async created(){
-  //      await axios.post('/api/auth/me',  store.state.token).then(res=>{
-  //              if(res.data.success){
-  //                 this.user = res.data.user
-  //                 // console.log(this.user);
-  //              }
-  //         }).catch(err=>{
-  //             // console.log('err');
-  //             console.log(err.response.data)
-  //             this.user = []
-  //         })
-  // }
-
+  name: 'Home'
 });
 
 /***/ }),
@@ -57,7 +37,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Componente "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "badge bg-secondary"
 }, "HOME")])])], -1
 /* HOISTED */

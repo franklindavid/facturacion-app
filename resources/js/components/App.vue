@@ -26,7 +26,6 @@ export default ({
           console.log('axios');
               if(res.data.success){
                   this.user = res.data.user
-                  // console.log(this.user);
               }
           }).catch(err=>{
               console.log('err');

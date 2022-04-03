@@ -19675,7 +19675,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log('axios');
 
                 if (res.data.success) {
-                  _this.user = res.data.user; // console.log(this.user);
+                  _this.user = res.data.user;
                 }
               })["catch"](function (err) {
                 console.log('err');
@@ -19837,7 +19837,7 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "class": "navbar-brand",
   href: "#"
-}, "Navbar", -1
+}, "Facturax", -1
 /* HOISTED */
 );
 

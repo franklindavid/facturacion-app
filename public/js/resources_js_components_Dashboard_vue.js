@@ -71,10 +71,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return axios.post('/api/auth/me', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {
                 if (res.data.success) {
-                  _this3.user = res.data.user; // console.log(this.user);
+                  _this3.user = res.data.user;
                 }
               })["catch"](function (err) {
-                // console.log('err');
                 console.log(err.response.data);
                 _this3.user = [];
               });
@@ -113,7 +112,7 @@ var _hoisted_3 = {
   "class": "col text-center"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Componente "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "badge bg-secondary"
 }, "DASHBOARD")], -1
 /* HOISTED */

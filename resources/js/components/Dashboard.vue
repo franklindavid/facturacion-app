@@ -2,7 +2,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col text-center">
-                <h1>Componente <span class="badge bg-secondary">DASHBOARD</span></h1>
+                <h1> <span class="badge bg-secondary">DASHBOARD</span></h1>
                 <h3 v-if="user"> Hi , {{user.name}}</h3>
             </div>
         </div>
@@ -54,10 +54,8 @@ export default {
          await axios.post('/api/auth/me',  store.state.token).then(res=>{
                  if(res.data.success){
                     this.user = res.data.user
-                    // console.log(this.user);
                  }
             }).catch(err=>{
-                // console.log('err');
                 console.log(err.response.data)
                 this.user = []
             })
