@@ -10,7 +10,7 @@ Clone the repository
 
 Switch to the repository folder
 
-    cd Library-Laravel-9.2
+    cd facturacion-app
 
 Install all the dependencies using NPM
 
