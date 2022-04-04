@@ -139,6 +139,7 @@
 </template>
 
 <script>
+import {store} from '../../store';
 export default {
     name:"edit",
     data(){
@@ -158,7 +159,20 @@ export default {
         }
     },
     mounted(){
-        this.mostrarFacturas()
+        if(store.state.token !== ''){
+            axios.post('/api/auth/checkToken', store.state.token).then(
+                res=>{
+
+                }
+            ).catch(err=>{
+                    store.commit('clearToken');
+                    this.$router.push('/login');
+                    console.log(err.response.data);
+                }
+            );
+        }else{
+            this.$router.push('/login');
+        }
     },
     methods:{
         async mostrarFacturas(){

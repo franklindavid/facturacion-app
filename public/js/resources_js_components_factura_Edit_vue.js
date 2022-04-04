@@ -13,11 +13,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../store */ "./resources/js/store.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "edit",
@@ -38,11 +40,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.mostrarFacturas();
+    var _this = this;
+
+    if (_store__WEBPACK_IMPORTED_MODULE_1__.store.state.token !== '') {
+      axios.post('/api/auth/checkToken', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {})["catch"](function (err) {
+        _store__WEBPACK_IMPORTED_MODULE_1__.store.commit('clearToken');
+
+        _this.$router.push('/login');
+
+        console.log(err.response.data);
+      });
+    } else {
+      this.$router.push('/login');
+    }
   },
   methods: {
     mostrarFacturas: function mostrarFacturas() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -50,7 +64,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("/api/factura/".concat(_this.$route.params.id, "/edit")).then(function (response) {
+                return axios.get("/api/factura/".concat(_this2.$route.params.id, "/edit")).then(function (response) {
                   var _response$data$factur = response.data.factura,
                       numero_factura = _response$data$factur.numero_factura,
                       fecha = _response$data$factur.fecha,
@@ -59,22 +73,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       nombre_receptor = _response$data$factur.nombre_receptor,
                       nit_receptor = _response$data$factur.nit_receptor,
                       productos = _response$data$factur.productos;
-                  _this.factura.numero_factura = numero_factura;
-                  _this.factura.fecha = fecha;
-                  _this.factura.nombre_emisor = nombre_emisor;
-                  _this.factura.nit_emisor = nit_emisor;
-                  _this.factura.nombre_receptor = nombre_receptor;
-                  _this.factura.nit_receptor = nit_receptor;
+                  _this2.factura.numero_factura = numero_factura;
+                  _this2.factura.fecha = fecha;
+                  _this2.factura.nombre_emisor = nombre_emisor;
+                  _this2.factura.nit_emisor = nit_emisor;
+                  _this2.factura.nombre_receptor = nombre_receptor;
+                  _this2.factura.nit_receptor = nit_receptor;
                   productos.forEach(function (element) {
-                    _this.factura.producto.push(element);
+                    _this2.factura.producto.push(element);
 
-                    console.log('this.sub_total+(element.cantidad*element.valor_unitario: ' + _this.sub_total + '+' + element.cantidad + '*' + element.valor_unitario + '=' + element.cantidad * element.valor_unitario);
-                    _this.sub_total = _this.sub_total + element.cantidad * element.valor_unitario;
-                    console.log('sub_total: ' + _this.sub_total);
-                    _this.iva = _this.sub_total * 0.19; // console.log('iva: '+this.iva);
+                    console.log('this.sub_total+(element.cantidad*element.valor_unitario: ' + _this2.sub_total + '+' + element.cantidad + '*' + element.valor_unitario + '=' + element.cantidad * element.valor_unitario);
+                    _this2.sub_total = _this2.sub_total + element.cantidad * element.valor_unitario;
+                    console.log('sub_total: ' + _this2.sub_total);
+                    _this2.iva = _this2.sub_total * 0.19; // console.log('iva: '+this.iva);
 
                     // console.log('iva: '+this.iva);
-                    _this.count = element.id;
+                    _this2.count = element.id;
                   });
                 })["catch"](function (error) {
                   console.log(error.response.data);
@@ -110,7 +124,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     actualizar: function actualizar() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -118,8 +132,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.put("/api/factura/".concat(_this2.$route.params.id), _this2.factura).then(function (response) {
-                  _this2.$router.push('/factura');
+                return axios.put("/api/factura/".concat(_this3.$route.params.id), _this3.factura).then(function (response) {
+                  _this3.$router.push('/factura');
                 })["catch"](function (error) {
                   console.log(error.response.data);
                 });
@@ -171,7 +185,7 @@ var _hoisted_3 = {
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card-header"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Crear Factura")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Modificar Factura")], -1
 /* HOISTED */
 );
 
