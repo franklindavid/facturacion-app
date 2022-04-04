@@ -212,7 +212,6 @@ export default {
         },
         removeProducto(id){
             const found = this.factura.producto.find(element => element.id === id);
-            console.log(found);
             this.factura.producto = this.factura.producto.filter((item) => item.id !== id);
             this.sub_total=this.sub_total-(found.cantidad*found.valor_unitario);
             this.iva=(this.sub_total)*0.19;

@@ -47,7 +47,8 @@ class FacturasController extends Controller
 
     public function edit(Request $request,$id)
     {
-        $factura = Factura::find($id); 
+        // $factura = Factura::find($id); 
+        $factura = Factura::with('productos')->find($id);
         return response()->json([           
             'factura'=>$factura
         ]); 
@@ -61,11 +62,21 @@ class FacturasController extends Controller
         $factura->nombre_emisor=$request->nombre_emisor;  
         $factura->nit_emisor=$request->nit_emisor;  
         $factura->nombre_receptor=$request->nombre_receptor;  
-        $factura->nit_receptor=$request->nit_receptor;  
-        $factura->update();      
-        return response()->json([           
-            'factura'=>$factura
-        ]); 
+        $factura->nit_receptor=$request->nit_receptor; 
+        $factura->update();
+        
+        $productoD = Producto::where('factura_id',$id);  
+        $productoD->delete(); 
+
+        foreach ($request->producto as $producto){
+            $productoN = new Producto; 
+            $productoN->factura_id=$factura->id;
+            $productoN->nombre=$producto['nombre'];
+            $productoN->descripcion=$producto['descripcion'];
+            $productoN->cantidad=$producto['cantidad'];
+            $productoN->valor_unitario=$producto['valor_unitario'];
+            $productoN->save();
+        }
     }
 
     public function destroy($id)

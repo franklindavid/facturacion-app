@@ -2,11 +2,11 @@
 
 Video preview
 
-        http://youtu.be/ngS3oGPSz3M
+    
  
 Clone the repository
 
-    https://github.com/franklindavid/Library-Laravel-9.2.git
+    https://github.com/franklindavid/facturacion-app
 
 Switch to the repository folder
 

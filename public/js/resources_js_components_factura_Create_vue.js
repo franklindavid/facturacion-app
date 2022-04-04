@@ -102,7 +102,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var found = this.factura.producto.find(function (element) {
         return element.id === id;
       });
-      console.log(found);
       this.factura.producto = this.factura.producto.filter(function (item) {
         return item.id !== id;
       });
