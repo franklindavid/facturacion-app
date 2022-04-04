@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header"><h4>Crear Factura</h4></div>
+                <div class="card-header"><h4>Modificar Factura</h4></div>
                 <div class="card-body">
                     <form @submit.prevent="actualizar">
                         <div class="row">
