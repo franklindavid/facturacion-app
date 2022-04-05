@@ -23,25 +23,23 @@
           <router-link exact-active-class="active" to="/factura" class="nav-link active" aria-current="page">Factura</router-link>
         </li>
       </ul>
-       <!-- <span class="navbar-text">
-            <h3 v-if="user !== null">{{user.name}}</h3>
-      </span> -->
        <span class="navbar-text">
-            <!-- <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page" v-if="!user">Login</router-link> -->
-            <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page">Login</router-link>
+            <div v-if="userLogged">{{userLogged.user.name}}</div>
       </span>
        <span class="navbar-text">
-            <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page"   @click.prevent="logout">Logout</router-link>
-            <!-- <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page" v-if="user !== null"   @click.prevent="logout">Logout</router-link> -->
+            <router-link  exact-active-class="active" to="/login" class="nav-link active" aria-current="page" v-if="userLogged.user ==''">Login</router-link>
+      </span>
+       <span class="navbar-text">
+            <router-link exact-active-class="active" to="#" class="nav-link active" aria-current="page" v-if="userLogged.user  != ''"   @click.prevent="logout">Logout</router-link>
       </span>
     </div>
   </div>
 </nav>
-{{user}}
 </template>
 
 <script>
 import {store} from '../store';
+import { userLogged } from '../reactive.js'
 export default ({
     name:'Navbar',
     // props:['user'],    
@@ -50,12 +48,14 @@ export default ({
             axios.post('/api/auth/logout', store.state.token).then(
                 res=>{
                     store.commit('clearToken');
+                    userLogged.user = []
                     this.$router.push('/login');
                 }
             ).catch(err=>{
                     store.commit('clearToken');
+                    userLogged.user = []  
                     this.$router.push('/login');
-                    console.log(err);
+                    console.log(err.response.data);
                 }
             );
 
@@ -63,20 +63,33 @@ export default ({
     },
     data() {
         return {
-            user: null
+            userLogged
         }
     },
-    async onRenderTracked(){
+    async mounted(){
+      if(store.state.token){
+        console.log('asdsa')
+         await axios.post('/api/auth/me',  store.state.token).then(res=>{
+                 if(res.data.success){
+                    userLogged.user = res.data.user
+                 }
+            }).catch(err=>{
+                console.log(err.response.data)
+                userLogged.user = []
+            })
+      }
+    }/*,
+    async renderTracked (){
+      if(store.state.token){
          await axios.post('/api/auth/me',  store.state.token).then(res=>{
                  if(res.data.success){
                     this.user = res.data.user
-                    // console.log(this.user);
                  }
             }).catch(err=>{
-                console.log('err');
                 console.log(err.response.data)
                 this.user = []
             })
-    }
+      }
+    }*/
 })
 </script>

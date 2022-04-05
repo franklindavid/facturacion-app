@@ -1,15 +1,15 @@
 
 <template>
-
-<Navbar />
-  <div class="container mt-5">
-      <router-view  >
-      </router-view>
-  </div>
+    <Navbar/>
+    <div class="container mt-5">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
+import {store} from '../store';
 import Navbar from './Navbar.vue';
+import { userLogged } from '../reactive.js'
 export default ({    
     name: 'App',
     components:{
@@ -17,21 +17,33 @@ export default ({
     },
     data() {
         return {
-            user: null
+             userLogged
         }
     },
     async created(){
-      console.log('created');
-      await axios.post('/api/auth/me',  store.state.token).then(res=>{
-          console.log('axios');
+        if(store.state.token){
+            await axios.post('/api/auth/me',  store.state.token).then(res=>{
               if(res.data.success){
-                  this.user = res.data.user
+                  userLogged.user = res.data.user
               }
           }).catch(err=>{
-              console.log('err');
               console.log(err.response.data)
-              this.user = []
+              userLogged.user = []
           })
+      }      
+    },
+    async update(){
+        if(store.state.token){
+         await axios.post('/api/auth/me',  store.state.token).then(res=>{
+                 if(res.data.success){
+                    userLogged.user = res.data.user
+                    // console.log(this.user);
+                 }
+            }).catch(err=>{
+                console.log(err.response.data)
+                userLogged.user = []
+            })
+        }
     }
 })
 </script>

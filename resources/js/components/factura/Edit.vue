@@ -140,6 +140,7 @@
 
 <script>
 import {store} from '../../store';
+import { userLogged } from '../../reactive.js'
 export default {
     name:"edit",
     data(){
@@ -159,6 +160,7 @@ export default {
         }
     },
     mounted(){
+        this.mostrarFacturas();
         if(store.state.token !== ''){
             axios.post('/api/auth/checkToken', store.state.token).then(
                 res=>{

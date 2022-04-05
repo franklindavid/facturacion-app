@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col text-center">
                 <h1> <span class="badge bg-secondary">DASHBOARD</span></h1>
-                <h3 v-if="user"> Hi , {{user.name}}</h3>
+                <h3 v-if="userLogged"> Hi , {{userLogged.user.name}}</h3>
             </div>
         </div>
     </div>
@@ -11,11 +11,12 @@
 
 <script>
 import {store} from '../store';
+import { userLogged } from '../reactive.js'
 export default {    
     name:"Dashboard",
     data(){
         return {
-            user: null
+            userLogged
         }
     },
     mounted(){
@@ -53,11 +54,11 @@ export default {
     async created(){
          await axios.post('/api/auth/me',  store.state.token).then(res=>{
                  if(res.data.success){
-                    this.user = res.data.user
+                    userLogged.user = res.data.user
                  }
             }).catch(err=>{
                 console.log(err.response.data)
-                this.user = []
+                userLogged.user = []
             })
     }
 }

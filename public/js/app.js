@@ -19643,7 +19643,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navbar.vue */ "./resources/js/components/Navbar.vue");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _Navbar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Navbar.vue */ "./resources/js/components/Navbar.vue");
+/* harmony import */ var _reactive_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reactive.js */ "./resources/js/reactive.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19651,36 +19653,37 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'App',
   components: {
-    Navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Navbar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
-      user: null
+      userLogged: _reactive_js__WEBPACK_IMPORTED_MODULE_3__.userLogged
     };
   },
   created: function created() {
-    var _this = this;
-
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log('created');
-              _context.next = 3;
-              return axios.post('/api/auth/me', store.state.token).then(function (res) {
-                console.log('axios');
+              if (!_store__WEBPACK_IMPORTED_MODULE_1__.store.state.token) {
+                _context.next = 3;
+                break;
+              }
 
+              _context.next = 3;
+              return axios.post('/api/auth/me', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {
                 if (res.data.success) {
-                  _this.user = res.data.user;
+                  _reactive_js__WEBPACK_IMPORTED_MODULE_3__.userLogged.user = res.data.user;
                 }
               })["catch"](function (err) {
-                console.log('err');
                 console.log(err.response.data);
-                _this.user = [];
+                _reactive_js__WEBPACK_IMPORTED_MODULE_3__.userLogged.user = [];
               });
 
             case 3:
@@ -19689,6 +19692,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }
       }, _callee);
+    }))();
+  },
+  update: function update() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!_store__WEBPACK_IMPORTED_MODULE_1__.store.state.token) {
+                _context2.next = 3;
+                break;
+              }
+
+              _context2.next = 3;
+              return axios.post('/api/auth/me', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {
+                if (res.data.success) {
+                  _reactive_js__WEBPACK_IMPORTED_MODULE_3__.userLogged.user = res.data.user; // console.log(this.user);
+                }
+              })["catch"](function (err) {
+                console.log(err.response.data);
+                _reactive_js__WEBPACK_IMPORTED_MODULE_3__.userLogged.user = [];
+              });
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
     }))();
   }
 });
@@ -19709,11 +19741,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _reactive_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reactive.js */ "./resources/js/reactive.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -19725,42 +19759,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.post('/api/auth/logout', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {
         _store__WEBPACK_IMPORTED_MODULE_1__.store.commit('clearToken');
+        _reactive_js__WEBPACK_IMPORTED_MODULE_2__.userLogged.user = [];
 
         _this.$router.push('/login');
       })["catch"](function (err) {
         _store__WEBPACK_IMPORTED_MODULE_1__.store.commit('clearToken');
+        _reactive_js__WEBPACK_IMPORTED_MODULE_2__.userLogged.user = [];
 
         _this.$router.push('/login');
 
-        console.log(err);
+        console.log(err.response.data);
       });
     }
   },
   data: function data() {
     return {
-      user: null
+      userLogged: _reactive_js__WEBPACK_IMPORTED_MODULE_2__.userLogged
     };
   },
-  onRenderTracked: function onRenderTracked() {
-    var _this2 = this;
-
+  mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              if (!_store__WEBPACK_IMPORTED_MODULE_1__.store.state.token) {
+                _context.next = 4;
+                break;
+              }
+
+              console.log('asdsa');
+              _context.next = 4;
               return axios.post('/api/auth/me', _store__WEBPACK_IMPORTED_MODULE_1__.store.state.token).then(function (res) {
                 if (res.data.success) {
-                  _this2.user = res.data.user; // console.log(this.user);
+                  _reactive_js__WEBPACK_IMPORTED_MODULE_2__.userLogged.user = res.data.user;
                 }
               })["catch"](function (err) {
-                console.log('err');
                 console.log(err.response.data);
-                _this2.user = [];
+                _reactive_js__WEBPACK_IMPORTED_MODULE_2__.userLogged.user = [];
               });
 
-            case 2:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -19768,6 +19807,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   }
+  /*,
+  async renderTracked (){
+   if(store.state.token){
+      await axios.post('/api/auth/me',  store.state.token).then(res=>{
+              if(res.data.success){
+                 this.user = res.data.user
+              }
+         }).catch(err=>{
+             console.log(err.response.data)
+             this.user = []
+         })
+   }
+  }*/
+
 });
 
 /***/ }),
@@ -19883,14 +19936,20 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 var _hoisted_14 = {
   "class": "navbar-text"
 };
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
-
+var _hoisted_15 = {
+  key: 0
+};
 var _hoisted_16 = {
   "class": "navbar-text"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
+
+var _hoisted_18 = {
+  "class": "navbar-text"
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Logout");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -19931,24 +19990,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <span class=\"navbar-text\">\r\n            <h3 v-if=\"user !== null\">{{user.name}}</h3>\r\n      </span> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link  exact-active-class=\"active\" to=\"/login\" class=\"nav-link active\" aria-current=\"page\" v-if=\"!user\">Login</router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, [$data.userLogged ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.userLogged.user.name), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [$data.userLogged.user == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
     "exact-active-class": "active",
     to: "/login",
     "class": "nav-link active",
     "aria-current": "page"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_15];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "exact-active-class": "active",
-    to: "#",
-    "class": "nav-link active",
-    "aria-current": "page",
-    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.logout, ["prevent"])
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_17];
@@ -19956,11 +20005,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, [$data.userLogged.user != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 0,
+    "exact-active-class": "active",
+    to: "#",
+    "class": "nav-link active",
+    "aria-current": "page",
+    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.logout, ["prevent"])
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_19];
+    }),
+    _: 1
+    /* STABLE */
+
   }, 8
   /* PROPS */
-  , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link exact-active-class=\"active\" to=\"#\" class=\"nav-link active\" aria-current=\"page\" v-if=\"user !== null\"   @click.prevent=\"logout\">Logout</router-link> ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user), 1
-  /* TEXT */
-  )], 64
+  , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -19984,23 +20045,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
- // import App from './components/App.vue';
-
- //importamos Axios
 
 
- //Importamos y configuramos el Vue-router
-// import { createRouter, createWebHistory } from 'vue-router'
 
 
- // const router = createRouter({
-//     history: createWebHistory(process.env.BASE_URL),
-//     routes : routes, // short for `routes: routes`
-//   })
-// const app = createApp({});
-// app.use(router);
-// app.use(VueAxios, axios)
-// router.isReady().then(() => createApp(App).mount('#app'));
+
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_routes__WEBPACK_IMPORTED_MODULE_4__.router, vue_axios__WEBPACK_IMPORTED_MODULE_2__["default"], (axios__WEBPACK_IMPORTED_MODULE_3___default()), _store__WEBPACK_IMPORTED_MODULE_5__.store).mount('#app');
 
@@ -20034,6 +20083,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/reactive.js":
+/*!**********************************!*\
+  !*** ./resources/js/reactive.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "userLogged": () => (/* binding */ userLogged)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var userLogged = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+  user: {}
+});
 
 /***/ }),
 
